@@ -4,4 +4,12 @@ const {
   createProduct,
   getAllProducts,
 } = require("../controllers/productController");
-const { uploadsController } = require("../controllers/uploadsController");
+const {
+  uploadsController,
+  uploadProductImage,
+} = require("../controllers/uploadsController");
+
+router.route("/").post(createProduct).get(getAllProducts);
+router.route("/uploads").post(uploadProductImage);
+
+module.exports = router;
