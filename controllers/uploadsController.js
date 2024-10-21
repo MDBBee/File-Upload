@@ -1,6 +1,7 @@
 const { StatusCodes } = require("http-status-codes");
 const cloudinary = require("cloudinary").v2;
 const path = require("path");
+const fs = require("fs");
 const {
   CustomAPIError,
   UnauthenticatedError,
@@ -36,6 +37,7 @@ const uploadProductImage = async (req, res) => {
       folder: "file-upload-app",
     }
   );
+  fs.unlinkSync(req.files.image.tempFilePath);
   res.status(StatusCodes.OK).json({ image: { src: result.secure_url } });
 };
 
