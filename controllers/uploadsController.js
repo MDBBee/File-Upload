@@ -10,13 +10,13 @@ const {
 } = require("../errors/index");
 
 const uploadProductImageLocal = async (req, res) => {
-  if (!req.files) throw new BadRequestError("Please chosse a file!");
+  if (!req.files) throw new BadRequestError("Please choose add an image file!");
 
   const image = req.files.image;
 
-  if (!image.mimetype.startsWith("image/j"))
+  if (!image.mimetype.startsWith("image"))
     throw new BadRequestError(
-      "Please choose the appropriate file type: image/jpeg"
+      "Please choose the appropriate file type: image/*"
     );
 
   if (image.size > 1024 * 1024)
